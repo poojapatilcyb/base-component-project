@@ -1,0 +1,33 @@
+<!-- <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Custom Number Input</mat-label>
+      <app-chase-form-feild formControlName="customNumber"></app-chase-form-feild>
+      @if(form.get('customNumber')?.hasError('required')){
+        <mat-error>
+            This field is required.
+          </mat-error>
+      }
+      @if(form.get('customNumber')?.hasError('min')){
+        <mat-error>
+            The value must be greater than or equal to 0.
+        </mat-error>
+        }
+    </mat-form-field>
+  
+    <button type="submit" mat-raised-button color="primary">Submit</button>
+    <button type="button" mat-button color="warn" (click)="onReset()">Reset</button>
+  </form> -->
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+ 
+    <mat-form-field appearance="fill">
+        <mat-label>First Name </mat-label>
+      <app-chase-form-feild formControlName="phonenumber" (blur)="onInputBlur()"></app-chase-form-feild>
+    </mat-form-field>
+    <p>
+        <button type="submit">Submit</button>
+      
+      <button type="button" mat-button color="warn" (click)="onReset()">Reset</button>
+      <button type="button" mat-button color="accent" (click)="toggleControl()">Toggle Disable</button>
+    </p>
+</form>

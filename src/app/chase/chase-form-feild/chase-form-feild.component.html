@@ -1,0 +1,6 @@
+<input matInput
+       [id]="id"
+       [value]="value"
+       (input)="onInput($event)"
+       (blur)="onBlur()"
+       [disabled]="isDisabled ? true : null">
