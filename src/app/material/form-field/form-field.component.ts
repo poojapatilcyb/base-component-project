@@ -18,7 +18,9 @@ export class FormFieldComponent {
   constructor(private fb: FormBuilder) {
     // Initialize the form with a FormBuilder
     this.form = this.fb.group({
-      phonenumber: [{ value: null, disabled: this.disableControl }, [Validators.required, Validators.minLength(3)]],
+      firstName: [{ value: '', disabled: this.disableControl }, [Validators.required, Validators.minLength(3)]],
+      lastName: [{ value: '', disabled: this.disableControl }, [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]]
     });
   }
 
@@ -44,9 +46,9 @@ export class FormFieldComponent {
   toggleControl() {
     this.disableControl = !this.disableControl;
     if (this.disableControl) {
-      this.form.get('phonenumber')?.disable();
+      this.form.get('firstName')?.disable();
     } else {
-      this.form.get('phonenumber')?.enable();
+      this.form.get('firstName')?.enable();
     }
   }
 }

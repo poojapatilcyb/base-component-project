@@ -3,6 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@a
 import {MatFormFieldControl, MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Subject } from 'rxjs';
+
 @Component({
   selector: 'app-chase-form-feild',
   standalone: true,
@@ -16,7 +17,7 @@ import { Subject } from 'rxjs';
     {
       provide: NG_VALUE_ACCESSOR, //by registering this token angular get to know that this is part of form component
       useExisting: forwardRef(() => ChaseFormFeildComponent),
-      multi: true
+      multi: true // use NG_VALUE_ACCESSOR more than one time hence multi:true
     }
   ],
   templateUrl: './chase-form-feild.component.html',
@@ -24,21 +25,22 @@ import { Subject } from 'rxjs';
 })
 export class ChaseFormFeildComponent implements ControlValueAccessor, OnDestroy{
   static nextId = 0;
-  @Input() value: number | null = null;
+  @Input() label: string = '';
+  @Input() value: string = '';
   isDisabled = false;
   id = `custom-number-input-${ChaseFormFeildComponent.nextId++}`;
   stateChanges = new Subject<void>();
 
   // Implementing ControlValueAccessor methods
-  onChange = (value: number | null) => {};
+  onChange = (value: string) => {};
   onTouched = () => {};
 
-  writeValue(value: number | null): void {
+  writeValue(value: string): void {
     this.value = value;
     this.stateChanges.next();
   }
 
-  registerOnChange(fn: (value: number | null) => void): void {
+  registerOnChange(fn: (value: string) => void): void {
     this.onChange = fn;
   }
 
@@ -72,11 +74,11 @@ export class ChaseFormFeildComponent implements ControlValueAccessor, OnDestroy{
 
   onInput(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
-    const parsedValue = parseFloat(inputElement.value);
-    if (!isNaN(parsedValue)) {
+    const parsedValue = inputElement.value;
+    // if (!isNaN(parsedValue)) {
       this.value = parsedValue;
       this.onChange(this.value);
-    }
+    // }
   }
 
   onBlur(): void {

@@ -1,6 +1,9 @@
-<input matInput
+<mat-form-field appearance="fill">
+       <mat-label>{{label}}</mat-label>
+       <input matInput
        [id]="id"
        [value]="value"
        (input)="onInput($event)"
        (blur)="onBlur()"
        [disabled]="isDisabled ? true : null">
+</mat-form-field>
