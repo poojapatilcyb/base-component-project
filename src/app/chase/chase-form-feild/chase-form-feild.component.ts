@@ -14,7 +14,7 @@ import { Subject } from 'rxjs';
       multi: true
     },
     {
-      provide: NG_VALUE_ACCESSOR,
+      provide: NG_VALUE_ACCESSOR, //by registering this token angular get to know that this is part of form component
       useExisting: forwardRef(() => ChaseFormFeildComponent),
       multi: true
     }
@@ -22,7 +22,7 @@ import { Subject } from 'rxjs';
   templateUrl: './chase-form-feild.component.html',
   styleUrl: './chase-form-feild.component.scss'
 })
-export class ChaseFormFeildComponent implements OnInit, OnDestroy{
+export class ChaseFormFeildComponent implements ControlValueAccessor, OnDestroy{
   static nextId = 0;
   @Input() value: number | null = null;
   isDisabled = false;
@@ -33,12 +33,8 @@ export class ChaseFormFeildComponent implements OnInit, OnDestroy{
   onChange = (value: number | null) => {};
   onTouched = () => {};
 
-  ngOnInit(): void {
-    console.log(this.value);
-  }
   writeValue(value: number | null): void {
     this.value = value;
-    console.log(value);
     this.stateChanges.next();
   }
 
@@ -51,8 +47,8 @@ export class ChaseFormFeildComponent implements OnInit, OnDestroy{
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    console.log(isDisabled)
     this.isDisabled = isDisabled;
+    this.stateChanges.next();
   }
 
   // Implementing MatFormFieldControl methods
@@ -64,9 +60,14 @@ export class ChaseFormFeildComponent implements OnInit, OnDestroy{
     return true;
   }
 
-  // Adding the missing method `setDescribedByIds` to satisfy `MatFormFieldControl`
   setDescribedByIds(ids: string[]): void {
     // Custom implementation can be empty or handle specific logic if needed
+  }
+
+  // Implement onContainerClick as part of MatFormFieldControl
+  onContainerClick(): void {
+    // You can implement custom behavior or leave it empty
+    // This method is required to avoid errors in Angular Material
   }
 
   onInput(event: Event): void {
@@ -85,4 +86,5 @@ export class ChaseFormFeildComponent implements OnInit, OnDestroy{
   ngOnDestroy() {
     this.stateChanges.complete();
   }
+
 }

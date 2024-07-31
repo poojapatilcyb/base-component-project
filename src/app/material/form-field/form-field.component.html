@@ -19,14 +19,12 @@
   </form> -->
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
- 
     <mat-form-field appearance="fill">
         <mat-label>First Name </mat-label>
-      <app-chase-form-feild formControlName="phonenumber" (blur)="onInputBlur()"></app-chase-form-feild>
+        <app-chase-form-feild formControlName="phonenumber" (blur)="onInputBlur()"></app-chase-form-feild>
     </mat-form-field>
     <p>
-        <button type="submit">Submit</button>
-      
+      <button type="submit" mat-button color="accent">Submit</button>
       <button type="button" mat-button color="warn" (click)="onReset()">Reset</button>
       <button type="button" mat-button color="accent" (click)="toggleControl()">Toggle Disable</button>
     </p>
