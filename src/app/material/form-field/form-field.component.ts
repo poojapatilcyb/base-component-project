@@ -19,9 +19,9 @@ export class FormFieldComponent {
   constructor(private fb: FormBuilder) {
     // Initialize the form with a FormBuilder
     this.form = this.fb.group({
-      firstName: [{ value: '', disabled: this.disableControl }, [Validators.required, Validators.minLength(3)]],
-      lastName: [{ value: '', disabled: this.disableControl }, [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]]
+      firstName: [{ value: '',label: "First Name", disabled: this.disableControl, showIcon: false, icon: '' }, [Validators.required, Validators.minLength(3)]],
+      lastName: [{ value: '',label: "Last Name", disabled: false, showIcon:false, icon: '' }, [Validators.required, Validators.minLength(3)]],
+      email: [{value:'',label: "Email", disabled: false, showIcon: true, icon: 'email'}, [Validators.required, Validators.email]]
     });
   }
 

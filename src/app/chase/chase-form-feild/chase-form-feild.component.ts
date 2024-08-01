@@ -5,6 +5,13 @@ import { MatInputModule } from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { Subject } from 'rxjs';
 
+interface formFieldValue {
+  value: string;
+  label?: string;
+  disabled?: boolean;
+  showIcon?: boolean;
+  icon?: string;
+}
 @Component({
   selector: 'app-chase-form-feild',
   standalone: true,
@@ -26,36 +33,55 @@ import { Subject } from 'rxjs';
 })
 export class ChaseFormFeildComponent implements ControlValueAccessor, OnDestroy{
   static nextId = 0;
-  @Input() label: string = '';
-  @Input() value: string = '';
-  @Input() showIcon: boolean = false;
-  @Input() icon: string = '';
-  isDisabled = false;
+  @Input() value: formFieldValue = {value: ''};
+  formValue: string = '';
+  label: string = '';
+  showIcon: boolean = false;
+  icon: string = '';
+  isDisabled: boolean = false;
   id = `custom-number-input-${ChaseFormFeildComponent.nextId++}`;
   stateChanges = new Subject<void>();
 
   // Implementing ControlValueAccessor methods
-  onChange = (value: string) => {};
+  onChange = (formValue: string) => {};
   onTouched = () => {};
 
-  writeValue(value: string): void {
+  writeValue(value: formFieldValue): void {
+    console.log(value);
     this.value = value;
+    this.formValue = value.value;
+    this.label = value?.label ? value?.label : '';
+    // this.isDisabled = value?.disabled ? value?.disabled : false;
+    this.showIcon = value?.showIcon ? value?.showIcon : false;
+    this.icon = value?.icon ? value?.icon : '';
     this.stateChanges.next();
   }
 
-  registerOnChange(fn: (value: string) => void): void {
+  registerOnChange(fn: (formValue: string) => void): void {
     this.onChange = fn;
   }
 
   registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
+  setlabel?(label: string): void {
+    this.label = label;
+    this.stateChanges.next();
+  }
 
   setDisabledState?(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
     this.stateChanges.next();
   }
-
+  setShowIcon?(showIcon: boolean): void {
+    console.log(showIcon);
+    this.showIcon = showIcon;
+    this.stateChanges.next();
+  }
+  setIcon?(icon: string): void {
+    this.icon = icon;
+    this.stateChanges.next();
+  }
   // Implementing MatFormFieldControl methods
   get empty(): boolean {
     return !this.value;
@@ -79,8 +105,8 @@ export class ChaseFormFeildComponent implements ControlValueAccessor, OnDestroy{
     const inputElement = event.target as HTMLInputElement;
     const parsedValue = inputElement.value;
     // if (!isNaN(parsedValue)) {
-      this.value = parsedValue;
-      this.onChange(this.value);
+      this.formValue = parsedValue;
+      this.onChange(this.formValue);
     // }
   }
 

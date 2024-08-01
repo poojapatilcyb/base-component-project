@@ -4,17 +4,17 @@
   </mat-card-header>
   <mat-card-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <app-chase-form-feild label="First Name" formControlName="firstName" (blur)="onInputBlur()"></app-chase-form-feild>
-      <app-chase-form-feild label="Last Name" formControlName="lastName" (blur)="onInputBlur()"></app-chase-form-feild>
-      <app-chase-form-feild label="Email" formControlName="email" (blur)="onInputBlur()" [showIcon]="true" icon="email"></app-chase-form-feild>
+      <app-chase-form-feild formControlName="firstName" (blur)="onInputBlur()"></app-chase-form-feild>
+      <app-chase-form-feild formControlName="lastName" (blur)="onInputBlur()"></app-chase-form-feild>
+      <app-chase-form-feild formControlName="email" (blur)="onInputBlur()"></app-chase-form-feild>
       <p>
         <button type="submit" mat-button color="accent">Submit</button>
         <button type="button" mat-button color="warn" (click)="onReset()">Reset</button>
         <button type="button" mat-button color="accent" (click)="toggleControl()">Toggle Disable</button>
       </p>
-      <mat-card-subtitle>First Name: {{form.get('firstName')?.value}}</mat-card-subtitle>
-      <mat-card-subtitle>Last Name:{{form.get('lastName')?.value}}</mat-card-subtitle>
-      <mat-card-subtitle>Email: {{form.get('email')?.value}}</mat-card-subtitle>
+      <mat-card-subtitle>First Name: {{form.get('firstName')?.value.formValue}}</mat-card-subtitle>
+      <mat-card-subtitle>Last Name:{{form.get('lastName')?.value.formValue}}</mat-card-subtitle>
+      <mat-card-subtitle>Email: {{form.get('email')?.value.formValue}}</mat-card-subtitle>
     </form>
   </mat-card-content>
 

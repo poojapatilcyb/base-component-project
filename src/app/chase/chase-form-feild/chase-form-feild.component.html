@@ -3,7 +3,7 @@
               <mat-label>{{label}}</mat-label>
               <input matInput
               [id]="id"
-              [value]="value"
+              [value]="formValue"
               (input)="onInput($event)"
               (blur)="onBlur()"
               [disabled]="isDisabled ? true : null">
