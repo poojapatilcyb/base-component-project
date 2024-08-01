@@ -2,12 +2,13 @@ import { Component, Input, OnDestroy, OnInit, forwardRef  } from '@angular/core'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldControl, MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
 import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-chase-form-feild',
   standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule],
   providers: [
     {
       provide: MatFormFieldControl,
@@ -27,6 +28,8 @@ export class ChaseFormFeildComponent implements ControlValueAccessor, OnDestroy{
   static nextId = 0;
   @Input() label: string = '';
   @Input() value: string = '';
+  @Input() showIcon: boolean = false;
+  @Input() icon: string = '';
   isDisabled = false;
   id = `custom-number-input-${ChaseFormFeildComponent.nextId++}`;
   stateChanges = new Subject<void>();

@@ -6,7 +6,7 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <app-chase-form-feild label="First Name" formControlName="firstName" (blur)="onInputBlur()"></app-chase-form-feild>
       <app-chase-form-feild label="Last Name" formControlName="lastName" (blur)="onInputBlur()"></app-chase-form-feild>
-      <app-chase-form-feild label="Email" formControlName="email" (blur)="onInputBlur()"></app-chase-form-feild>
+      <app-chase-form-feild label="Email" formControlName="email" (blur)="onInputBlur()" [showIcon]="true" icon="email"></app-chase-form-feild>
       <p>
         <button type="submit" mat-button color="accent">Submit</button>
         <button type="button" mat-button color="warn" (click)="onReset()">Reset</button>

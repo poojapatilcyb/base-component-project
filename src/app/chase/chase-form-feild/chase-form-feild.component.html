@@ -7,6 +7,9 @@
               (input)="onInput($event)"
               (blur)="onBlur()"
               [disabled]="isDisabled ? true : null">
+              @if(showIcon) {
+              <mat-icon matSuffix>{{icon}}</mat-icon>
+              }
        </mat-form-field>
 </div>
 
