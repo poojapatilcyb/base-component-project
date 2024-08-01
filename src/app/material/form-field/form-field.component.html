@@ -1,32 +1,22 @@
-<!-- <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="fill">
-      <mat-label>Custom Number Input</mat-label>
-      <app-chase-form-feild formControlName="customNumber"></app-chase-form-feild>
-      @if(form.get('customNumber')?.hasError('required')){
-        <mat-error>
-            This field is required.
-          </mat-error>
-      }
-      @if(form.get('customNumber')?.hasError('min')){
-        <mat-error>
-            The value must be greater than or equal to 0.
-        </mat-error>
-        }
-    </mat-form-field>
-  
-    <button type="submit" mat-raised-button color="primary">Submit</button>
-    <button type="button" mat-button color="warn" (click)="onReset()">Reset</button>
-  </form> -->
-
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<mat-card appearance="outlined"  class="example-card">
+  <mat-card-header>
+    <mat-card-title> Enter Personal Info</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <app-chase-form-feild label="First Name" formControlName="firstName" (blur)="onInputBlur()"></app-chase-form-feild>
       <app-chase-form-feild label="Last Name" formControlName="lastName" (blur)="onInputBlur()"></app-chase-form-feild>
       <app-chase-form-feild label="Email" formControlName="email" (blur)="onInputBlur()"></app-chase-form-feild>
-    <p>
-      <button type="submit" mat-button color="accent">Submit</button>
-      <button type="button" mat-button color="warn" (click)="onReset()">Reset</button>
-      <button type="button" mat-button color="accent" (click)="toggleControl()">Toggle Disable</button>
-    </p>
+      <p>
+        <button type="submit" mat-button color="accent">Submit</button>
+        <button type="button" mat-button color="warn" (click)="onReset()">Reset</button>
+        <button type="button" mat-button color="accent" (click)="toggleControl()">Toggle Disable</button>
+      </p>
+      <mat-card-subtitle>First Name: {{form.get('firstName')?.value}}</mat-card-subtitle>
+      <mat-card-subtitle>Last Name:{{form.get('lastName')?.value}}</mat-card-subtitle>
+      <mat-card-subtitle>Email: {{form.get('email')?.value}}</mat-card-subtitle>
+    </form>
+  </mat-card-content>
 
-    {{form.get('phonenumber')?.value}}
-</form>
+
+</mat-card>

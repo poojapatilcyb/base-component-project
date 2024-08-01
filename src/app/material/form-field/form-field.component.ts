@@ -3,12 +3,13 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ChaseFormFeildComponent } from '../../chase/chase-form-feild/chase-form-feild.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { fail } from 'assert';
 @Component({
   selector: 'app-form-field',
   standalone: true,
-  imports: [ChaseFormFeildComponent, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+  imports: [ChaseFormFeildComponent, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule],
   templateUrl: './form-field.component.html',
   styleUrl: './form-field.component.scss'
 })
